@@ -24,16 +24,35 @@ A comprehensive SQL project for managing a **Book Store** database. This project
 
 ## 📂 Database Structure
 
-### ER Diagram
-<!-- Optional: Add an ER diagram for better visualization -->
+### Schema Design
 
-### Tables
-- **Publishers:** Stores publisher information.
-- **Books:** Contains book details (e.g., title, pages, rating, price, and publication date).
-- **Authors:** Stores author details including full name.
-- **Book Authors:** Establishes a Many-to-Many relationship between Books and Authors.
-- **Genres:** Stores different book genres.
-- **Book Genres:** Establishes a Many-to-Many relationship between Books and Genres.
+Below is the **Entity-Relationship Diagram (ERD)** that represents the schema design for the Book Store Database:
+
+```
+Publishers ────< Books >─── Book_Authors >─── Authors
+                │                 │
+                └── Book_Genres ─ Genres
+```
+
+### Explanation of Relationships:
+
+1. **Publishers and Books**:
+   - **One-to-Many** relationship: Each publisher can publish multiple books, but each book is associated with a single publisher.
+   - `publisher_id` serves as a foreign key in the `Books` table referencing the `Publishers` table.
+
+2. **Books and Authors**:
+   - **Many-to-Many** relationship: A book can have multiple authors, and an author can write multiple books.
+   - Implemented using a bridge table `Book_Authors` that links `Books` and `Authors` via `book_id` and `author_id`.
+
+3. **Books and Genres**:
+   - **Many-to-Many** relationship: A book can belong to multiple genres, and a genre can include multiple books.
+   - Implemented using a bridge table `Book_Genres` that links `Books` and `Genres` via `book_id` and `genres_id`.
+
+4. **Authors**:
+   - Contains details about authors, including their first, middle, and last names.
+
+5. **Genres**:
+   - Stores the different genres available in the bookstore.
 
 ---
 
