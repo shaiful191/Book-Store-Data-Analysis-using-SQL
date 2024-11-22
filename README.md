@@ -29,9 +29,25 @@ A comprehensive SQL project for managing a **Book Store** database. This project
 Below is the **Entity-Relationship Diagram (ERD)** that represents the schema design for the Book Store Database:
 
 ```
-Publishers ────< Books >─── Book_Authors >─── Authors
-                │                 │
-                └── Book_Genres ─ Genres
++----------------+           +----------------+          +------------------+
+|  Publishers    |           |    Books       |          |     Authors      |
++----------------+           +----------------+          +------------------+
+| publisher_id   |<--------->| publisher_id   |          |  author_id       |
+| name           |           | book_id        |<----+    |  first_name      |
++----------------+           | title          |     |    |  middle_name     |
+                             | total_pages    |     |    |  last_name       |
+                             | rating         |     +----|------------------+
+                             | price          |          |
+                             +----------------+          |
+                                     ^                   |
+                                     |                   |
++------------------+           +------------------+      |
+|    Genres        |           |   Book_Authors   |<-----+
++------------------+           +------------------+
+| genres_id        |<--------->| book_id          |
+| genres           |           | author_id        |
++------------------+           +------------------+
+
 ```
 
 ### Explanation of Relationships:
